@@ -54,7 +54,7 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="15dp"
             android:background="#0000"
             android:src="@drawable/open_menu_button"
             app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
@@ -77,29 +77,63 @@
 
         android:layout_alignParentBottom="true"
 
-        android:background="@color/white"
+        android:background="@color/main_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:padding="20dp">
+        android:padding="15dp">
 
         <EditText
             android:id="@+id/enter_message_to_chat_field"
 
             android:layout_toLeftOf="@id/send_message_to_chat_button"
+            android:layout_centerVertical="true"
 
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:maxHeight="300dp"
+            android:background="@drawable/enter_message_to_chat_field"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
 
-        <androidx.appcompat.widget.AppCompatButton
+            android:hint="сообщение.."
+            android:textColorHint="#FFBABABA"
+            android:textAllCaps="false"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            />
+
+        <FrameLayout
             android:id="@+id/send_message_to_chat_button"
 
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
+            android:layout_alignBottom="@id/enter_message_to_chat_field"
 
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginLeft="20dp"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp">
+
+            <ImageButton
+
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+
+                android:background="@drawable/send_message_to_chat_button">
+
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="1dp"
+
+                android:src="@mipmap/paper_plane_message"/>
+
+        </FrameLayout>
 
     </RelativeLayout>
 
