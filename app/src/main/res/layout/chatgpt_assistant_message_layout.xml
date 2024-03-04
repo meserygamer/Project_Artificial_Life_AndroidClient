@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/chatGPT_assistant_message_layout_logo"
+
+        android:layout_alignParentRight="true"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:src="@mipmap/chatgpt_assistant_message_logo"/>
+
+    <LinearLayout
+
+        android:layout_toLeftOf="@id/chatGPT_assistant_message_layout_logo"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        android:gravity="right">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+
+            android:textAlignment="textEnd"
+            android:text="ChatGPT3.5"
+            android:textColor="@color/white"
+            android:fontFamily="@font/inter_semibold"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/chatGPT_assistant_message_layout_message_text"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vulputate urna ut leo consectetur, ut vulputate ligula commodo. Fusce tristique laoreet iaculis."
+            android:textAlignment="textEnd"
+            android:textColor="@color/white"
+            android:fontFamily="@font/inter_medium"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
