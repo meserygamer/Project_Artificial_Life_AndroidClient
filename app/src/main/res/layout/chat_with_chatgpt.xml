@@ -7,6 +7,41 @@
     android:background="@color/main_background"
     tools:context=".Views.Chat_With_ChatGPT">
 
+    <RelativeLayout
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/chatGPT_logo"
+
+            android:layout_centerVertical="true"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+
+            android:src="@mipmap/chat_gpt_logo"/>
+
+        <TextView
+            android:id="@+id/chatGPT_label"
+
+            android:layout_toRightOf="@id/chatGPT_logo"
+            android:layout_centerVertical="true"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="ChatGPT 3.5"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:fontFamily="@font/inter_bold"
+            />
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
