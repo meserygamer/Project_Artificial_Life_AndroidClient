@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Project_Artificial_Life_AndroidClient"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".Views.Chat_With_ChatGPT"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
