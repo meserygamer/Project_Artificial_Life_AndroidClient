@@ -4,7 +4,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/chatGPT_assistant_message_layout_logo"
+        android:id="@+id/chatGPT_user_message_layout_logo"
 
         android:layout_alignParentLeft="true"
 
@@ -15,7 +15,7 @@
 
     <LinearLayout
 
-        android:layout_toRightOf="@id/chatGPT_assistant_message_layout_logo"
+        android:layout_toRightOf="@id/chatGPT_user_message_layout_logo"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
             android:textSize="16sp"/>
 
         <TextView
-            android:id="@+id/chatGPT_assistant_message_layout_message_text"
+            android:id="@+id/chatGPT_user_message_layout_message_text"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
