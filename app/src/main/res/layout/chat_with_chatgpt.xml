@@ -54,7 +54,7 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="20dp"
             android:background="#0000"
             android:src="@drawable/open_menu_button"
             app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
@@ -79,11 +79,27 @@
 
         android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+
+        android:padding="20dp">
 
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"
+            android:id="@+id/enter_message_to_chat_field"
+
+            android:layout_toLeftOf="@id/send_message_to_chat_button"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/send_message_to_chat_button"
+
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="20dp"/>
 
     </RelativeLayout>
 
