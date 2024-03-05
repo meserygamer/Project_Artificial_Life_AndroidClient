@@ -12,7 +12,7 @@ public class ChatGPT_SendMessage_Request {
     List<ChatGPT_Message> messages;
 
     @SerializedName("temperature")
-    int temperature;
+    double temperature;
 
 
     public void setModel(String model) {
@@ -29,10 +29,10 @@ public class ChatGPT_SendMessage_Request {
         return messages;
     }
 
-    public void setTemperature(int temperature) {
+    public void setTemperature(double temperature) {
         this.temperature = temperature;
     }
-    public int getTemperature() {
+    public double getTemperature() {
         return temperature;
     }
 }
