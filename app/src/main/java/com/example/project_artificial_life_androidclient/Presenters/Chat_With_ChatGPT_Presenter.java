@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.example.project_artificial_life_androidclient.Contracts.Chat_With_ChatGPT_Contract;
 import com.example.project_artificial_life_androidclient.APIes.Models.ChatGPT_Message;
+import com.example.project_artificial_life_androidclient.JavaFunctionalityExtensions.Action;
 import com.example.project_artificial_life_androidclient.Models.Chat_With_ChatGPT_Model;
 
 import java.util.List;
@@ -22,7 +23,19 @@ public class Chat_With_ChatGPT_Presenter implements Chat_With_ChatGPT_Contract.P
 
     @Override
     public void SendUserMessageToChat(String userMessage) {
-
+        model.sendMessageToServer(userMessage
+                , new Action() {
+                    @Override
+                    public void DoAction() {
+                        view.RenderingOfAddingNewMessageToList();
+                    }
+                }
+                , new Action() {
+                    @Override
+                    public void DoAction() {
+                        view.InformUserAboutProblemsWithChatGPTConnection();
+                    }
+                });
     }
 
 

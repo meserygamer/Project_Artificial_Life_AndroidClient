@@ -1,5 +1,6 @@
 package com.example.project_artificial_life_androidclient.Views;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.project_artificial_life_androidclient.APIes.Connections.ChatGPTRetrofitConnection;
 import com.example.project_artificial_life_androidclient.APIes.Models.ChatGPT_Message;
@@ -31,6 +33,26 @@ public class Chat_With_ChatGPT_View extends AppCompatActivity implements Chat_Wi
         return binding;
     }
 
+
+    @Override
+    public void RenderingOfAddingNewMessageToList() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                chatListAdapter.notifyDataSetChanged();
+                binding.enterMessageToChatField.getText().clear();
+                UnlockUserInputSystem();
+            }
+        });
+    }
+
+    @Override
+    public void InformUserAboutProblemsWithChatGPTConnection() {
+        Toast.makeText(this, "Сообщение не было доставлено!\nПовторите попытку отправки", Toast.LENGTH_SHORT).show();
+        UnlockUserInputSystem();
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,27 +61,16 @@ public class Chat_With_ChatGPT_View extends AppCompatActivity implements Chat_Wi
         setContentView(binding.getRoot());
         SetAllListeners();
         SetMessageHistoryRecyclerView();
-        ChatGPT_SendMessage_Request request = new ChatGPT_SendMessage_Request();
-        List<ChatGPT_Message> messagesHistory = new LinkedList<ChatGPT_Message>();
-        ChatGPT_Message message = new ChatGPT_Message("user", "hello! What do you do?");
-        messagesHistory.add(message);
-        request.setMessages(messagesHistory);
-        (new ChatGPTRetrofitConnection()).Get_ChatGPT_API().SendMessageToChatGPTWithParameters(request).enqueue(new Callback<ChatGPT_SendMessage_Response>() {
-            @Override
-            public void onResponse(Call<ChatGPT_SendMessage_Response> call, Response<ChatGPT_SendMessage_Response> response) {
-                Log.println(Log.DEBUG, "ChatGPTAPI", "Я получил ответ: " + response.body().getChoices().get(0).getMessage().getContent());
-            }
-
-            @Override
-            public void onFailure(Call<ChatGPT_SendMessage_Response> call, Throwable t) {
-                Log.println(Log.DEBUG, "ChatGPTAPI", "Я провалился босс: " + t.getMessage());
-            }
-        });
     }
 
 
-    private @Nullable ChatWithChatgptBinding binding = null;
+    @Nullable
+    private ChatWithChatgptBinding binding = null;
 
+    @Nullable
+    private ChatGPTMessageHistoryAdapter chatListAdapter;
+
+    @NonNull
     private Chat_With_ChatGPT_Contract.Presenter presenter;
 
 
@@ -67,17 +78,27 @@ public class Chat_With_ChatGPT_View extends AppCompatActivity implements Chat_Wi
         binding.sendMessageToChatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
+                String userMessage = binding.enterMessageToChatField.getText().toString();
+                if(userMessage.length() == 0) return;
+                LockUserInputSystem();
+                presenter.SendUserMessageToChat(userMessage);
             }
         });
     }
 
     private void SetMessageHistoryRecyclerView() {
         binding.MessageHistoryRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        binding.MessageHistoryRecyclerView.setAdapter(new ChatGPTMessageHistoryAdapter(presenter.getMessagesHistory()));
+        chatListAdapter = new ChatGPTMessageHistoryAdapter(presenter.getMessagesHistory());
+        binding.MessageHistoryRecyclerView.setAdapter(chatListAdapter);
     }
 
+    private void LockUserInputSystem(){
+        binding.enterMessageToChatField.setEnabled(false);
+        binding.sendMessageToChatButton.setEnabled(false);
+    }
 
+    private void UnlockUserInputSystem(){
+        binding.enterMessageToChatField.setEnabled(true);
+        binding.sendMessageToChatButton.setEnabled(true);
+    }
 }
