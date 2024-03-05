@@ -1,4 +1,4 @@
-package com.example.project_artificial_life_androidclient.Models;
+package com.example.project_artificial_life_androidclient.APIes.Models;
 
 public class ChatGPT_Message {
 

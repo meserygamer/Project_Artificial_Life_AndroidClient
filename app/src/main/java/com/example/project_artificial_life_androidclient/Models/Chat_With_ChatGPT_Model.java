@@ -1,5 +1,6 @@
 package com.example.project_artificial_life_androidclient.Models;
 
+import com.example.project_artificial_life_androidclient.APIes.Models.ChatGPT_Message;
 import com.example.project_artificial_life_androidclient.Contracts.Chat_With_ChatGPT_Contract;
 
 import java.util.LinkedList;

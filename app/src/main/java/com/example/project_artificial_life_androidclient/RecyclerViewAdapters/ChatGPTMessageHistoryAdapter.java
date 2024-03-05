@@ -1,14 +1,12 @@
 package com.example.project_artificial_life_androidclient.RecyclerViewAdapters;
 
-import android.os.Message;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.project_artificial_life_androidclient.Models.ChatGPT_Message;
+import com.example.project_artificial_life_androidclient.APIes.Models.ChatGPT_Message;
 import com.example.project_artificial_life_androidclient.databinding.ChatgptAssistantMessageLayoutBinding;
 import com.example.project_artificial_life_androidclient.databinding.ChatgptUserMessageLayoutBinding;
 
