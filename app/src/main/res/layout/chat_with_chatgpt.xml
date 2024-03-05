@@ -97,7 +97,7 @@
             android:paddingHorizontal="10dp"
             android:paddingVertical="10dp"
 
-            android:hint="сообщение.."
+            android:hint="Сообщение.."
             android:textColorHint="#FFBABABA"
             android:textAllCaps="false"
             android:textSize="15sp"

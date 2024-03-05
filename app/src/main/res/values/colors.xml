@@ -3,5 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="main_background">#FF021E20</color>
-    <color name="accent_color">#FF97B3DA</color>
+    <color name="accent_color_chatgpt">#FF97B3DA</color>
+    <color name="accent_color_kandinsky">#2B9438</color>
 </resources>
