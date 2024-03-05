@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.example.project_artificial_life_androidclient.APIes.Connections.ChatGPTRetrofitConnection;
 import com.example.project_artificial_life_androidclient.APIes.Models.ChatGPT_Message;
@@ -36,7 +37,7 @@ public class Chat_With_ChatGPT_View extends AppCompatActivity implements Chat_Wi
         binding = ChatWithChatgptBinding.inflate(getLayoutInflater());
         presenter = new Chat_With_ChatGPT_Presenter(this);
         setContentView(binding.getRoot());
-        SetAllListners();
+        SetAllListeners();
         SetMessageHistoryRecyclerView();
         ChatGPT_SendMessage_Request request = new ChatGPT_SendMessage_Request();
         List<ChatGPT_Message> messagesHistory = new LinkedList<ChatGPT_Message>();
@@ -62,8 +63,15 @@ public class Chat_With_ChatGPT_View extends AppCompatActivity implements Chat_Wi
     private Chat_With_ChatGPT_Contract.Presenter presenter;
 
 
-    private void SetAllListners() {
+    private void SetAllListeners() {
+        binding.sendMessageToChatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+
+
+            }
+        });
     }
 
     private void SetMessageHistoryRecyclerView() {

@@ -20,6 +20,11 @@ public class Chat_With_ChatGPT_Presenter implements Chat_With_ChatGPT_Contract.P
         return model.getMessagesHistory();
     }
 
+    @Override
+    public void SendUserMessageToChat(String userMessage) {
+
+    }
+
 
     @NonNull
     private Chat_With_ChatGPT_Contract.View view;

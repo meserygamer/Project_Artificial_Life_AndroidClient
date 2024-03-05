@@ -5,6 +5,14 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class ChatGPT_SendMessage_Request {
+
+    public ChatGPT_SendMessage_Request(){}
+
+    public ChatGPT_SendMessage_Request(List<ChatGPT_Message> messages){
+        this.messages = messages;
+    }
+
+
     @SerializedName("model")
     String model = "gpt-3.5-turbo";
 
