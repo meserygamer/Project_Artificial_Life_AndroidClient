@@ -39,12 +39,8 @@ public class Chat_With_ChatGPT_View extends AppCompatActivity implements Chat_Wi
         SetAllListners();
         SetMessageHistoryRecyclerView();
         ChatGPT_SendMessage_Request request = new ChatGPT_SendMessage_Request();
-        request.setTemperature(0.7);
-        request.setModel("gpt-3.5-turbo");
         List<ChatGPT_Message> messagesHistory = new LinkedList<ChatGPT_Message>();
-        ChatGPT_Message message = new ChatGPT_Message();
-        message.setRole("user");
-        message.setContent("Hello!");
+        ChatGPT_Message message = new ChatGPT_Message("user", "hello! What do you do?");
         messagesHistory.add(message);
         request.setMessages(messagesHistory);
         (new ChatGPTRetrofitConnection()).Get_ChatGPT_API().SendMessageToChatGPTWithParameters(request).enqueue(new Callback<ChatGPT_SendMessage_Response>() {

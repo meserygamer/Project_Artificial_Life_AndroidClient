@@ -6,13 +6,13 @@ import java.util.List;
 
 public class ChatGPT_SendMessage_Request {
     @SerializedName("model")
-    String model;
+    String model = "gpt-3.5-turbo";
 
     @SerializedName("messages")
     List<ChatGPT_Message> messages;
 
     @SerializedName("temperature")
-    double temperature;
+    double temperature = 0.7;
 
 
     public void setModel(String model) {
