@@ -2,34 +2,36 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingRight="15dp">
+    android:paddingRight="15dp"
+    android:paddingBottom="10dp"
+    android:paddingLeft="15dp">
 
     <ImageView
         android:id="@+id/chatGPT_assistant_message_layout_logo"
 
-        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
 
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:src="@drawable/chatgpt_assistant_message_logo"/>
 
     <LinearLayout
 
-        android:layout_toLeftOf="@id/chatGPT_assistant_message_layout_logo"
+        android:layout_toRightOf="@id/chatGPT_assistant_message_layout_logo"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
 
-        android:gravity="right">
+        android:gravity="left">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="3dp"
 
-            android:textAlignment="textEnd"
+            android:textAlignment="textStart"
             android:text="Ассистент"
             android:textColor="@color/white"
             android:fontFamily="@font/inter_semibold"
@@ -42,7 +44,7 @@
             android:layout_height="wrap_content"
 
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vulputate urna ut leo consectetur, ut vulputate ligula commodo. Fusce tristique laoreet iaculis."
-            android:textAlignment="textEnd"
+            android:textAlignment="textStart"
             android:textColor="@color/white"
             android:fontFamily="@font/inter_medium"
             android:textSize="12sp"/>

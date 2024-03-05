@@ -35,11 +35,11 @@ public class Chat_With_ChatGPT_View extends AppCompatActivity implements Chat_Wi
 
 
     @Override
-    public void RenderingOfAddingNewMessageToList() {
+    public void RenderOfAddingNewMessageToList() {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                chatListAdapter.notifyDataSetChanged();
+                RenderNewMessageInChat();
                 binding.enterMessageToChatField.getText().clear();
                 UnlockUserInputSystem();
             }
@@ -48,8 +48,14 @@ public class Chat_With_ChatGPT_View extends AppCompatActivity implements Chat_Wi
 
     @Override
     public void InformUserAboutProblemsWithChatGPTConnection() {
+        chatListAdapter.notifyItemRemoved(chatListAdapter.getItemCount());
         Toast.makeText(this, "Сообщение не было доставлено!\nПовторите попытку отправки", Toast.LENGTH_SHORT).show();
         UnlockUserInputSystem();
+    }
+
+    @Override //Рендер нового сообщения в чате
+    public void RenderNewMessageInChat() {
+        chatListAdapter.notifyItemInserted(chatListAdapter.getItemCount() - 1);
     }
 
 

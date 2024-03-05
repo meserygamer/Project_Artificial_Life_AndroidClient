@@ -27,7 +27,7 @@ public class Chat_With_ChatGPT_Presenter implements Chat_With_ChatGPT_Contract.P
                 , new Action() {
                     @Override
                     public void DoAction() {
-                        view.RenderingOfAddingNewMessageToList();
+                        view.RenderOfAddingNewMessageToList();
                     }
                 }
                 , new Action() {
@@ -36,6 +36,7 @@ public class Chat_With_ChatGPT_Presenter implements Chat_With_ChatGPT_Contract.P
                         view.InformUserAboutProblemsWithChatGPTConnection();
                     }
                 });
+
     }
 
 
