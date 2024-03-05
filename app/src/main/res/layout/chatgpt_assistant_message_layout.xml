@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingRight="15dp">
 
     <ImageView
         android:id="@+id/chatGPT_assistant_message_layout_logo"
 
         android:layout_alignParentRight="true"
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginLeft="10dp"
-        android:src="@mipmap/chatgpt_assistant_message_logo"/>
+        android:src="@drawable/chatgpt_assistant_message_logo"/>
 
     <LinearLayout
 
@@ -29,7 +30,7 @@
             android:layout_marginBottom="3dp"
 
             android:textAlignment="textEnd"
-            android:text="ChatGPT3.5"
+            android:text="Ассистент"
             android:textColor="@color/white"
             android:fontFamily="@font/inter_semibold"
             android:textSize="16sp"/>

@@ -3,7 +3,7 @@
     <item>
         <layer-list>
 
-            <item android:height="6dp" android:width="20dp">
+            <item android:height="4dp" android:width="15dp">
 
                 <shape android:shape="rectangle">
 
@@ -15,7 +15,7 @@
 
             </item>
 
-            <item android:top="10dp" android:height="6dp" android:width="27.5dp">
+            <item android:top="10dp" android:height="4dp" android:width="20.625dp">
 
                 <shape android:shape="rectangle">
 
@@ -27,7 +27,7 @@
 
             </item>
 
-            <item android:top="20dp" android:height="6dp" android:width="35dp">
+            <item android:top="20dp" android:height="4dp" android:width="26.25dp">
                 <shape android:shape="rectangle">
 
                     <solid android:color="@color/accent_color"/>
