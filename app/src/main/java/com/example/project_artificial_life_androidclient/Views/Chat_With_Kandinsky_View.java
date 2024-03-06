@@ -26,7 +26,7 @@ public class Chat_With_Kandinsky_View extends AppCompatActivity implements Chat_
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ChatWithKandinskyBinding.inflate(getLayoutInflater());
-        presenter = new Chat_With_Kandinsky_Presenter();
+        presenter = new Chat_With_Kandinsky_Presenter(this);
         setContentView(binding.getRoot());
         SetAllListeners();
         SetMessageHistoryRecyclerView();
@@ -60,6 +60,6 @@ public class Chat_With_Kandinsky_View extends AppCompatActivity implements Chat_
                 LinearLayoutManager.VERTICAL,
                 false)
         );
-
+        adapter = new KandinskyMessageHistoryAdapter(presenter.GetChatMessagesList());
     }
 }
