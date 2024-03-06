@@ -14,6 +14,7 @@ import com.example.project_artificial_life_androidclient.Contracts.Chat_With_Kan
 import com.example.project_artificial_life_androidclient.Presenters.Chat_With_Kandinsky_Presenter;
 import com.example.project_artificial_life_androidclient.R;
 import com.example.project_artificial_life_androidclient.RecyclerViewAdapters.KandinskyMessageHistoryAdapter;
+import com.example.project_artificial_life_androidclient.Services.InternalStorageImageSaver;
 import com.example.project_artificial_life_androidclient.databinding.ChatWithKandinskyBinding;
 
 import java.util.List;
@@ -54,7 +55,7 @@ public class Chat_With_Kandinsky_View extends AppCompatActivity implements Chat_
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ChatWithKandinskyBinding.inflate(getLayoutInflater());
-        presenter = new Chat_With_Kandinsky_Presenter(this);
+        presenter = new Chat_With_Kandinsky_Presenter(this, new InternalStorageImageSaver(getContentResolver()));
         setContentView(binding.getRoot());
         SetAllListeners();
         SetMessageHistoryRecyclerView();

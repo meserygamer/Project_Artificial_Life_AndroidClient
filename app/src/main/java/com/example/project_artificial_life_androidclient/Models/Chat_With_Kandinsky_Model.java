@@ -14,6 +14,7 @@ import com.example.project_artificial_life_androidclient.APIes.Models.Kandinsky_
 import com.example.project_artificial_life_androidclient.APIes.Models.Kandinsky_SendRequestToGenerate_Params;
 import com.example.project_artificial_life_androidclient.Contracts.Chat_With_Kandinsky_Contract;
 import com.example.project_artificial_life_androidclient.JavaFunctionalityExtensions.Action;
+import com.example.project_artificial_life_androidclient.Services.ImageSaver;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -26,8 +27,9 @@ import retrofit2.Response;
 
 public class Chat_With_Kandinsky_Model implements Chat_With_Kandinsky_Contract.Model {
 
-    public Chat_With_Kandinsky_Model(){
+    public Chat_With_Kandinsky_Model(ImageSaver imageSaver){
         chatMessagesList = new ArrayList<>();
+        this.imageSaver = imageSaver;
     }
 
 
@@ -150,4 +152,6 @@ public class Chat_With_Kandinsky_Model implements Chat_With_Kandinsky_Contract.M
 
 
     private List<Object> chatMessagesList;
+
+    private ImageSaver imageSaver;
 }
