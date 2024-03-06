@@ -2,6 +2,9 @@ package com.example.project_artificial_life_androidclient.Models;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.example.project_artificial_life_androidclient.APIes.Connections.ChatGPTRetrofitConnection;
 import com.example.project_artificial_life_androidclient.APIes.Connections.KandinskyRetrofitConnection;
 import com.example.project_artificial_life_androidclient.APIes.Models.Kandinsky_GeneratedImage;
@@ -17,48 +20,62 @@ import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-import okhttp3.FormBody;
-import okhttp3.Headers;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Chat_With_Kandinsky_Model implements Chat_With_Kandinsky_Contract.Model {
 
     public Chat_With_Kandinsky_Model(){
-        ChatMessagesList = new ArrayList<>();
+        chatMessagesList = new ArrayList<>();
     }
 
 
     @Override
     public List<Object> GetChatMessagesList() {
-        return ChatMessagesList;
+        return chatMessagesList;
     }
 
     @Override
     public void SendUserRequestOnGenerateImageToKandinsky(String userQuarry, Action SuccessfullGeneringCallback, Action FailedGeneringCallback) {
 
         Kandinsky_SendRequestToGenerate_Params userMessageParams = new Kandinsky_SendRequestToGenerate_Params(1024, 1024, userQuarry);
+        chatMessagesList.add(userMessageParams);
 
         new Thread(new Runnable() {
             @Override
             public void run() {
 
                 int modelID = GetKandinskyModels();
+                if(modelID == -1)
+                {
+                    chatMessagesList.remove(chatMessagesList.size() - 1);
+                    FailedGeneringCallback.DoAction();
+                    return;
+                }
                 Kandinsky_SendRequestToGenerate_Data userMessageData = new Kandinsky_SendRequestToGenerate_Data(Integer.toString(modelID));
-                SendRequestToGenerateImage(userMessageParams, userMessageData);
+                String requestNumber = SendRequestToGenerateImage(userMessageParams, userMessageData);
+                if(requestNumber == ""){
+                    chatMessagesList.remove(chatMessagesList.size() - 1);
+                    FailedGeneringCallback.DoAction();
+                    return;
+                }
+                Kandinsky_GeneratedImage generatedImage = GetImageFromServer(requestNumber, 50);
+                if (requestNumber == null){
+                    chatMessagesList.remove(chatMessagesList.size() - 1);
+                    FailedGeneringCallback.DoAction();
+                    return;
+                }
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                Log.println(Log.INFO, "Kandinsky API Connection", gson.toJson(generatedImage));
+                chatMessagesList.add(generatedImage);
+                SuccessfullGeneringCallback.DoAction();
             }
         }).start();
     }
 
 
-    public int GetKandinskyModels(){
+    private int GetKandinskyModels(){
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try
@@ -76,9 +93,8 @@ public class Chat_With_Kandinsky_Model implements Chat_With_Kandinsky_Contract.M
         }
     }
 
-    public String SendRequestToGenerateImage(Kandinsky_SendRequestToGenerate_Params params, Kandinsky_SendRequestToGenerate_Data data){
+    private String SendRequestToGenerateImage(Kandinsky_SendRequestToGenerate_Params params, @NonNull Kandinsky_SendRequestToGenerate_Data data){
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try
         {
             Response<Kandinsky_GeneratedImage> imageResponse = new ChatGPTRetrofitConnection().Get_Kandinsky_MyProxy_API()
@@ -96,6 +112,42 @@ public class Chat_With_Kandinsky_Model implements Chat_With_Kandinsky_Contract.M
         }
     }
 
+    private @Nullable Kandinsky_GeneratedImage GetImageFromServer(String requestNumber, int numItter){
 
-    private List<Object> ChatMessagesList;
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        for(int i = 0; i < numItter; i++){
+            try
+            {
+                Response<Kandinsky_GeneratedImage> imageResponse = new KandinskyRetrofitConnection().Get_Kandinsky_API()
+                        .CheckRequestToGenerateImage(requestNumber)
+                        .execute();
+                if (imageResponse.code() != 200){
+                    continue;
+                }
+                if(Objects.equals(imageResponse.body().getStatus(), "FAIL")){
+                    Log.println(Log.INFO, "Kandinsky API Connection", "Ошибка при формировании картинки");
+                    return null;
+                }
+                if(Objects.equals(imageResponse.body().getStatus(), "DONE")){
+                    Log.println(Log.INFO, "Kandinsky API Connection", "Картинка сформирована!");
+                    return imageResponse.body();
+                }
+                try {
+                    Log.println(Log.INFO, "Kandinsky API Connection", gson.toJson(imageResponse.body()));
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+            catch (IOException ex){
+                Log.println(Log.WARN, "Kandinsky API Connection", ex.getMessage());
+                return null;
+            }
+        }
+        Log.println(Log.WARN, "Kandinsky API Connection", "Время ожидания получения картинки превышено");
+        return null;
+    }
+
+
+    private List<Object> chatMessagesList;
 }
