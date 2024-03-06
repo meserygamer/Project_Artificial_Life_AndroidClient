@@ -28,11 +28,11 @@ import retrofit2.Response;
 
 public class Chat_With_ChatGPT_View extends AppCompatActivity implements Chat_With_ChatGPT_Contract.View {
 
+    //Public Methods
     public ChatWithChatgptBinding getBinding()
     {
         return binding;
     }
-
 
     @Override
     public void RenderOfAddingNewMessageToList() {
@@ -58,7 +58,7 @@ public class Chat_With_ChatGPT_View extends AppCompatActivity implements Chat_Wi
         chatListAdapter.notifyItemInserted(chatListAdapter.getItemCount() - 1);
     }
 
-
+    //Protected Methods
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +69,7 @@ public class Chat_With_ChatGPT_View extends AppCompatActivity implements Chat_Wi
         SetMessageHistoryRecyclerView();
     }
 
-
+    //Private Fields
     @Nullable
     private ChatWithChatgptBinding binding = null;
 
@@ -79,7 +79,7 @@ public class Chat_With_ChatGPT_View extends AppCompatActivity implements Chat_Wi
     @NonNull
     private Chat_With_ChatGPT_Contract.Presenter presenter;
 
-
+    //Private Methods
     private void SetAllListeners() {
         binding.sendMessageToChatButton.setOnClickListener(new View.OnClickListener() {
             @Override

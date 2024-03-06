@@ -1,11 +1,18 @@
 package com.example.project_artificial_life_androidclient.Views;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
+import android.view.View;
 
+import com.example.project_artificial_life_androidclient.Contracts.Chat_With_ChatGPT_Contract;
 import com.example.project_artificial_life_androidclient.Contracts.Chat_With_Kandinsky_Contract;
+import com.example.project_artificial_life_androidclient.Presenters.Chat_With_Kandinsky_Presenter;
 import com.example.project_artificial_life_androidclient.R;
+import com.example.project_artificial_life_androidclient.RecyclerViewAdapters.KandinskyMessageHistoryAdapter;
 import com.example.project_artificial_life_androidclient.databinding.ChatWithKandinskyBinding;
 
 public class Chat_With_Kandinsky_View extends AppCompatActivity implements Chat_With_Kandinsky_Contract.View {
@@ -19,9 +26,40 @@ public class Chat_With_Kandinsky_View extends AppCompatActivity implements Chat_
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ChatWithKandinskyBinding.inflate(getLayoutInflater());
+        presenter = new Chat_With_Kandinsky_Presenter();
         setContentView(binding.getRoot());
+        SetAllListeners();
+        SetMessageHistoryRecyclerView();
     }
 
+    //Private Fields
+    @Nullable
+    private ChatWithKandinskyBinding binding = null;
 
-    private ChatWithKandinskyBinding binding;
+    @Nullable
+    private KandinskyMessageHistoryAdapter adapter;
+
+    @NonNull
+    private Chat_With_Kandinsky_Contract.Presenter presenter;
+
+    //Private Methods
+    private void SetAllListeners(){
+
+        binding.kandinskySendMessageToChatButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+    }
+
+    private void SetMessageHistoryRecyclerView(){
+        binding.KandinskyMessageHistoryRecyclerView.setLayoutManager(
+                new LinearLayoutManager(this,
+                LinearLayoutManager.VERTICAL,
+                false)
+        );
+
+    }
 }
