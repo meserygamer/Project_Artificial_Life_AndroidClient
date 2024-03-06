@@ -6,7 +6,7 @@ public class Kandinsky_GeneratedImage {
 
     private String uuid;
     private String status;
-    List<String> images = null;
+    private List<String> images = null;
     private String errorDescription = null;
     private boolean censored = false;
 
@@ -29,6 +29,10 @@ public class Kandinsky_GeneratedImage {
         return censored;
     }
 
+    public List<String> getImages(){
+        return images;
+    }
+
     // Setter Methods
 
     public void setUuid( String uuid ) {
@@ -45,6 +49,10 @@ public class Kandinsky_GeneratedImage {
 
     public void setCensored( boolean censored ) {
         this.censored = censored;
+    }
+
+    public void setImages( List<String> images ){
+        this.images = images;
     }
 
 }
