@@ -16,10 +16,10 @@
         android:theme="@style/Theme.Project_Artificial_Life_AndroidClient"
         tools:targetApi="31">
         <activity
-            android:name=".Views.Chat_With_Kandinsky_View"
+            android:name=".Views.Chat_With_ChatGPT_View"
             android:exported="false" />
         <activity
-            android:name=".Views.Chat_With_ChatGPT_View"
+            android:name=".Views.Chat_With_Kandinsky_View"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -2,6 +2,13 @@ package com.example.project_artificial_life_androidclient.APIes.Models;
 
 public class Kandinsky_SendRequestToGenerate_Data {
 
+    public Kandinsky_SendRequestToGenerate_Data(){}
+
+    public Kandinsky_SendRequestToGenerate_Data(String model_id){
+        this.model_id = model_id;
+    }
+
+
     private String model_id;
 
 

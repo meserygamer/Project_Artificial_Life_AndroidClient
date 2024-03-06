@@ -2,7 +2,7 @@ package com.example.project_artificial_life_androidclient.APIes.Models;
 
 public class Kandinsky_Model {
 
-    private float id;
+    private int id;
     private String name;
     private float version;
     private String type;
@@ -10,7 +10,7 @@ public class Kandinsky_Model {
 
     // Getter Methods
 
-    public float getId() {
+    public int getId() {
         return id;
     }
 
@@ -28,7 +28,7 @@ public class Kandinsky_Model {
 
     // Setter Methods
 
-    public void setId( float id ) {
+    public void setId( int id ) {
         this.id = id;
     }
 

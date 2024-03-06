@@ -15,6 +15,8 @@ import com.example.project_artificial_life_androidclient.R;
 import com.example.project_artificial_life_androidclient.RecyclerViewAdapters.KandinskyMessageHistoryAdapter;
 import com.example.project_artificial_life_androidclient.databinding.ChatWithKandinskyBinding;
 
+import java.util.List;
+
 public class Chat_With_Kandinsky_View extends AppCompatActivity implements Chat_With_Kandinsky_Contract.View {
 
     public ChatWithKandinskyBinding getBinding() {
@@ -49,7 +51,10 @@ public class Chat_With_Kandinsky_View extends AppCompatActivity implements Chat_
 
             @Override
             public void onClick(View view) {
-
+                LockUserInputSystem();
+                presenter.UserSendMessage(binding.kandinskyEnterMessageToChatField
+                                                 .getText()
+                                                 .toString());
             }
         });
     }
@@ -60,6 +65,18 @@ public class Chat_With_Kandinsky_View extends AppCompatActivity implements Chat_
                 LinearLayoutManager.VERTICAL,
                 false)
         );
-        adapter = new KandinskyMessageHistoryAdapter(presenter.GetChatMessagesList());
+        List<Object> messagesList = presenter.GetChatMessagesList();
+        adapter = new KandinskyMessageHistoryAdapter(messagesList);
+        binding.KandinskyMessageHistoryRecyclerView.setAdapter(adapter);
+    }
+
+    private void LockUserInputSystem(){
+        binding.kandinskyEnterMessageToChatField.setEnabled(false);
+        binding.kandinskySendMessageToChatButton.setEnabled(false);
+    }
+
+    private void UnlockUserInputSystem(){
+        binding.kandinskyEnterMessageToChatField.setEnabled(true);
+        binding.kandinskySendMessageToChatButton.setEnabled(true);
     }
 }

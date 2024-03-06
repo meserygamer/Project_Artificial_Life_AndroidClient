@@ -2,8 +2,22 @@ package com.example.project_artificial_life_androidclient.APIes.Models;
 
 public class Kandinsky_SendRequestToGenerate_Params {
 
-    private String type;
-    private int numImages;
+    public Kandinsky_SendRequestToGenerate_Params(){
+
+    }
+
+    public Kandinsky_SendRequestToGenerate_Params(int width,
+                                                  int height,
+                                                  String query){
+
+        this.height = height;
+        this.width = width;
+        this.generateParams = new Kandinsky_SendRequestToGenerate_GenerateParams(query);
+    }
+
+
+    private String type = "GENERATE";
+    private int numImages = 1;
     private int width;
     private int height;
     Kandinsky_SendRequestToGenerate_GenerateParams generateParams;
