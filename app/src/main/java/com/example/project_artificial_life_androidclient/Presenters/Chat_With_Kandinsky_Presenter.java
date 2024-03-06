@@ -26,15 +26,16 @@ public class Chat_With_Kandinsky_Presenter implements Chat_With_Kandinsky_Contra
                 new Action() {
                     @Override
                     public void DoAction() {
-
+                        view.RenderOfAddingNewMessageToList();
                     }
                 },
                 new Action() {
                     @Override
                     public void DoAction() {
-
+                        view.InformUserAboutProblemsWithKandinskyConnection();
                     }
                 });
+        view.RenderNewMessageInChat();
     }
 
 

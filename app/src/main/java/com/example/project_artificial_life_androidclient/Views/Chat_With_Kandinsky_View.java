@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.project_artificial_life_androidclient.Contracts.Chat_With_ChatGPT_Contract;
 import com.example.project_artificial_life_androidclient.Contracts.Chat_With_Kandinsky_Contract;
@@ -21,6 +22,31 @@ public class Chat_With_Kandinsky_View extends AppCompatActivity implements Chat_
 
     public ChatWithKandinskyBinding getBinding() {
         return binding;
+    }
+
+    @Override
+    public void RenderOfAddingNewMessageToList() {
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                RenderNewMessageInChat();
+                binding.kandinskyEnterMessageToChatField.getText().clear();
+                UnlockUserInputSystem();
+            }
+        });
+    }
+
+    @Override
+    public void InformUserAboutProblemsWithKandinskyConnection() {
+        adapter.notifyItemRemoved(adapter.getItemCount());
+        Toast.makeText(this, "Сообщение не было доставлено!\nПовторите попытку отправки", Toast.LENGTH_SHORT).show();
+        UnlockUserInputSystem();
+    }
+
+    @Override
+    public void RenderNewMessageInChat() {
+        adapter.notifyItemInserted(adapter.getItemCount() - 1);
     }
 
 
@@ -51,10 +77,13 @@ public class Chat_With_Kandinsky_View extends AppCompatActivity implements Chat_
 
             @Override
             public void onClick(View view) {
+
+                String userQuery = binding.kandinskyEnterMessageToChatField.getText().toString();
+                if(userQuery.length() == 0){
+                    return;
+                }
                 LockUserInputSystem();
-                presenter.UserSendMessage(binding.kandinskyEnterMessageToChatField
-                                                 .getText()
-                                                 .toString());
+                presenter.UserSendMessage(userQuery);
             }
         });
     }

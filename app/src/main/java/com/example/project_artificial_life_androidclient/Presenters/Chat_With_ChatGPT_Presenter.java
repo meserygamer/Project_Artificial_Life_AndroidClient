@@ -23,6 +23,7 @@ public class Chat_With_ChatGPT_Presenter implements Chat_With_ChatGPT_Contract.P
 
     @Override
     public void SendUserMessageToChat(String userMessage) {
+
         model.sendMessageToServer(userMessage
                 , new Action() {
                     @Override
@@ -36,7 +37,6 @@ public class Chat_With_ChatGPT_Presenter implements Chat_With_ChatGPT_Contract.P
                         view.InformUserAboutProblemsWithChatGPTConnection();
                     }
                 });
-
     }
 
 

@@ -16,6 +16,12 @@ public interface Chat_With_Kandinsky_Contract {
 
     public interface View{
 
+        public void RenderOfAddingNewMessageToList();
+
+        public void InformUserAboutProblemsWithKandinskyConnection();
+
+        public void RenderNewMessageInChat();
+
     }
 
     public interface Presenter{
