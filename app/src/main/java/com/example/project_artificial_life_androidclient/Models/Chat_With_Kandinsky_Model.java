@@ -2,10 +2,12 @@ package com.example.project_artificial_life_androidclient.Models;
 
 import android.util.Log;
 
+import com.example.project_artificial_life_androidclient.APIes.Connections.ChatGPTRetrofitConnection;
 import com.example.project_artificial_life_androidclient.APIes.Connections.KandinskyRetrofitConnection;
 import com.example.project_artificial_life_androidclient.APIes.Models.Kandinsky_GeneratedImage;
 import com.example.project_artificial_life_androidclient.APIes.Models.Kandinsky_Model;
 import com.example.project_artificial_life_androidclient.APIes.Models.Kandinsky_SendRequestToGenerate_Data;
+import com.example.project_artificial_life_androidclient.APIes.Models.Kandinsky_SendRequestToGenerate_MyServer;
 import com.example.project_artificial_life_androidclient.APIes.Models.Kandinsky_SendRequestToGenerate_Params;
 import com.example.project_artificial_life_androidclient.Contracts.Chat_With_Kandinsky_Contract;
 import com.example.project_artificial_life_androidclient.JavaFunctionalityExtensions.Action;
@@ -18,6 +20,7 @@ import java.util.List;
 
 import okhttp3.FormBody;
 import okhttp3.Headers;
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -78,17 +81,14 @@ public class Chat_With_Kandinsky_Model implements Chat_With_Kandinsky_Contract.M
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try
         {
-            Call<Kandinsky_GeneratedImage> call = (new KandinskyRetrofitConnection()).Get_Kandinsky_API()
-                    .SendRequestToGenerateImage(params, MultipartBody.Part.createFormData("model_id", ""));
-            Response<Kandinsky_GeneratedImage> response = call
+            Response<Kandinsky_GeneratedImage> imageResponse = new ChatGPTRetrofitConnection().Get_Kandinsky_MyProxy_API()
+                    .SendRequestToGenerateImage(new Kandinsky_SendRequestToGenerate_MyServer(params, Integer.valueOf(data.getModel_id())))
                     .execute();
-            Log.println(Log.DEBUG, "Kandinsky API Connection", gson.toJson(response.body()));
-            Log.println(Log.DEBUG, "Kandinsky API Connection", gson.toJson(response.code()));
-            Log.println(Log.DEBUG, "Kandinsky API Connection", gson.toJson(call.request()));
-            if(response.code() != 200){
+            if (imageResponse.body() == null || imageResponse.code() != 200){
                 return "";
             }
-            return response.body().getUuid();
+            Log.println(Log.INFO, "Kandinsky API Connection", imageResponse.body().getUuid());
+            return imageResponse.body().getUuid();
         }
         catch (IOException ex){
             Log.println(Log.WARN, "Kandinsky API Connection", ex.getMessage());

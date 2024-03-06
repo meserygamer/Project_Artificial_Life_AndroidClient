@@ -30,15 +30,6 @@ public interface Kandinsky_API_Interface {
             "X-Key:Key DF00F62BD21C4894FD5B2A66EED314A5",
             "X-Secret:Secret A2F7FBA41BC4405670A925CC84D54373"
     })
-    @POST("key/api/v1/text2image/run")
-    @Multipart
-    public Call<Kandinsky_GeneratedImage> SendRequestToGenerateImage(@Part("params") Kandinsky_SendRequestToGenerate_Params params,
-                                                                     @Part MultipartBody.Part data);
-
-    @Headers({
-            "X-Key:Key DF00F62BD21C4894FD5B2A66EED314A5",
-            "X-Secret:Secret A2F7FBA41BC4405670A925CC84D54373"
-    })
     @GET("key/api/v1/text2image/status/{image_id}")
     public Call<Kandinsky_GeneratedImage> CheckRequestToGenerateImage(@Path("image_id") String uuid);
 }
