@@ -1,0 +1,6 @@
+package com.example.project_artificial_life_androidclient.Presenters;
+
+import com.example.project_artificial_life_androidclient.Contracts.Chat_With_Kandinsky_Contract;
+
+public class Chat_With_Kandinsky_Presenter implements Chat_With_Kandinsky_Contract.Presenter{
+}

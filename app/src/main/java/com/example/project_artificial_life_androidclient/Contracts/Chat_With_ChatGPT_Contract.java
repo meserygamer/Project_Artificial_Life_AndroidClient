@@ -8,6 +8,7 @@ import java.util.List;
 public interface Chat_With_ChatGPT_Contract {
 
     public interface Model{
+
         public List<ChatGPT_Message> getMessagesHistory();
 
         public void sendMessageToServer(String message, Action successCallBack, Action failCallBack);

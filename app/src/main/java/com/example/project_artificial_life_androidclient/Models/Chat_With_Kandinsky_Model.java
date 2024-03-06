@@ -1,0 +1,6 @@
+package com.example.project_artificial_life_androidclient.Models;
+
+import com.example.project_artificial_life_androidclient.Contracts.Chat_With_Kandinsky_Contract;
+
+public class Chat_With_Kandinsky_Model implements Chat_With_Kandinsky_Contract.Model {
+}
