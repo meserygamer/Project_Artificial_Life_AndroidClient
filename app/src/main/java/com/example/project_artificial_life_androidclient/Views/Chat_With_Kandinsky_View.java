@@ -5,6 +5,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -74,6 +76,7 @@ public class Chat_With_Kandinsky_View extends AppCompatActivity implements Chat_
     //Private Methods
     private void SetAllListeners(){
 
+        Activity activity = this;
         binding.kandinskySendMessageToChatButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -85,6 +88,14 @@ public class Chat_With_Kandinsky_View extends AppCompatActivity implements Chat_
                 }
                 LockUserInputSystem();
                 presenter.UserSendMessage(userQuery);
+            }
+        });
+        binding.GoToNextPageKandinsky.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(activity, Chat_With_ChatGPT_View.class);
+                startActivity(intent);
             }
         });
     }

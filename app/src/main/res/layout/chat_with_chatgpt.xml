@@ -60,6 +60,18 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="@+id/relativeLayout" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/GoToNextPage_ChatGPT"
+
+            app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/relativeLayout"
+
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/right_arrow"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/MessageHistoryRecyclerView"
 
